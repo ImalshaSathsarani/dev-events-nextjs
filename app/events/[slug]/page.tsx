@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+
 import BookEvent from "@/components/BookEvent";
 import EventCard from "@/components/EventCard";
 import { IEvent } from "@/database";
@@ -41,7 +44,9 @@ const EventDetailsPage = async  ({params}:{params:Promise<{slug:string}>}) => {
 
     const { slug } = await params;
 
-    const request = await fetch(`${BASE_URL}/api/events/${slug}`);
+    const request = await fetch(`/api/events/${slug}`,{
+        cache: "no-store",
+         });
     const { event :{description,image,overview,date,time,location,mode,agenda,audience,tags,organizer,_id}} = await request.json();
 
     if(!description) return notFound();
