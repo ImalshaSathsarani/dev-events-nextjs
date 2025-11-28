@@ -1,11 +1,35 @@
 import Event from "@/database/event.model";
 import connectDB from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
-import { v2 as cloudinary} from 'cloudinary'
+import { v2 as cloudinary} from 'cloudinary';
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { cookies } from "next/headers";
+
+export async function getUserFromToken() {
+     const cookieStore = await cookies(); 
+  const token = cookieStore.get("token")?.value;
+  if (!token) return null;
+
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload & { id: string} ;
+  } catch {
+    return null;
+  }
+}
+
 export async function POST(req:NextRequest){
    try{
 
     await connectDB();
+
+     // 1️⃣ Decode user from token
+    const user = await getUserFromToken();
+    if (!user) {
+      return NextResponse.json(
+        { message: "Unauthorized. Please login." },
+        { status: 401 }
+      );
+    }
 
     const formData = await req.formData();
     let event;
@@ -42,6 +66,7 @@ export async function POST(req:NextRequest){
         ...event,
         tags:tags,
         agenda:agenda,
+        creator:user.id, 
     });
     return NextResponse.json({message:'Event created successfully', event:createdEvent}, {status:201})
 
@@ -61,3 +86,5 @@ export async function GET(){
         return NextResponse.json({message:'Event fetching failed', error:e},{status:500})
     }
 }
+
+
