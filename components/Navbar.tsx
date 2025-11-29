@@ -51,7 +51,7 @@ export default  function Navbar() {
         {/* Links */}
         <ul className="flex items-center gap-6 text-white font-medium">
           <Link href="/">Home</Link>
-          <Link href="/events">Events</Link>
+          <Link href="/">Events</Link>
 
           {!user && <Link href="/login">Login</Link>}
 
