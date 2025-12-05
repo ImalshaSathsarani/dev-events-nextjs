@@ -1,3 +1,32 @@
+# 🚀 DevEvents
+
+
+**DevEvents** is a modern event management platform designed specifically for the developer community. Built with **Next.js**, it serves as a central hub for tech enthusiasts to discover, organize, and book tickets for technology-related workshops, hackathons, and meetups.
+
+🔗 **Live Demo:** [https://devevents-demo.com](https://dev-events-nextjs-blush.vercel.app/)
+
+
+## ✨ Key Features
+
+* **🔐 Secure Authentication:** Seamless user registration and login system.
+* **📅 Event Management:** Users can create, update, and manage their own tech events.
+* **🎟️ Seamless Booking:** Easy-to-use booking system for attendees.
+* **🔍 Smart Discovery:**
+    * Detailed event pages.
+    * **"Similar Events" Algorithm:** A recommendation feature that suggests related events based on the category of the event currently being viewed.
+* **📱 Responsive Design:** Fully optimized for desktop and mobile devices.
+
+## 🛠️ Tech Stack
+
+* **Framework:** Next.js (React)
+* **Styling:** Tailwind CSS / CSS Modules
+* **Database:** MongoDB 
+* **Authentication:** jwt authentication
+
+---
+**Created by Imalsha Sathsarani**
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
